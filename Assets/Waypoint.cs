@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    public bool isExplored = false; //ok as it's a data class 
+    public bool isExplored = false; //ok as it's a data class
+    public bool isQueued = false;
     Vector2Int gridPos;
     const int gridSize = 10;
 

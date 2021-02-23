@@ -29,7 +29,7 @@ public class Pathfinder : MonoBehaviour
     private void Pathfind()
     {
         queue.Enqueue(starting);
-        
+        starting.isQueued = true;
         while(queue.Count>0 && isRunning)
         {
             var searchCenter = queue.Dequeue();
@@ -74,7 +74,7 @@ public class Pathfinder : MonoBehaviour
     private void QueueNewNeighbours(Vector2Int neighbourCoord)
     {
         Waypoint neighbour = grid[neighbourCoord];
-        if (neighbour.isExplored)
+        if (neighbour.isExplored || neighbour.isQueued)
         {
             //Do nothing
         }
@@ -82,6 +82,7 @@ public class Pathfinder : MonoBehaviour
         {
             neighbour.SetTopColor(Color.blue); //move later
             queue.Enqueue(neighbour);
+            neighbour.isQueued = true;
             print("Queueing " + neighbour);
         }
     }
