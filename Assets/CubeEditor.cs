@@ -31,7 +31,7 @@ public class CubeEditor : MonoBehaviour
         int gridSize = waypoint.GetGridSize();
        
         transform.position = new Vector3(
-            waypoint.GetGridPos().x*gridSize, 
+            waypoint.GetGridPos().x, 
             0f,
             waypoint.GetGridPos().y) * gridSize;
     }
