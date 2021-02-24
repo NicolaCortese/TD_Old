@@ -8,13 +8,16 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform targetEnemy;
 
 
-    private void OnParticleTrigger()
-    {
-        print("hit");
-    }
+    
     // Update is called once per frame
     void Update()
     {
         objectToPan.LookAt(targetEnemy);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        // add hit FX
+
+        print("hit");
     }
 }
