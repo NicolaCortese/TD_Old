@@ -7,83 +7,92 @@ public class Pathfinder : MonoBehaviour
     public Waypoint starting, ending;
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
-    [SerializeField] bool isRunning = true;
+    bool isRunning = true;
+    Waypoint searchCenter;
+
+    List<Waypoint> path = new List<Waypoint>();
 
     Vector2Int[] directions =
     {
         Vector2Int.up,
+        Vector2Int.right,
         Vector2Int.down,
-        Vector2Int.left,
-        Vector2Int.right
+        Vector2Int.left
     };
 
-    // Start is called before the first frame update
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartingAndEnding();
-        Pathfind();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
 
-    private void Pathfind()
+    private void CreatePath()
+    {
+        path.Add(ending);
+
+        Waypoint previous = ending.exploredFrom;
+        while (previous!=starting)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+        path.Add(starting);
+        path.Reverse();
+    }
+
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(starting);
-        starting.isQueued = true;
         while(queue.Count>0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
+            searchCenter = queue.Dequeue();
             searchCenter.isExplored = true;
-            print("Searching from " + searchCenter); // remove log later
-            StartAndEndAreSame(searchCenter);
-            ExploreThyNeighbour(searchCenter);
-
+            StartAndEndAreSame();
+            ExploreThyNeighbour();
 
         }
-        print("finished pathfinding?");
+        
     }
 
-    private void StartAndEndAreSame(Waypoint searchCenter)
+    private void StartAndEndAreSame()
     {
         if (searchCenter == ending)
         {
-            print("Start and End are the same"); // remove log later
             isRunning = false;
         }
         
     }
 
-    private void ExploreThyNeighbour(Waypoint from)
+    private void ExploreThyNeighbour()
     {
         if (!isRunning) { return; }
 
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int neighbourCoord = from.GetGridPos() + direction;
-            try
-            {
+            Vector2Int neighbourCoord = searchCenter.GetGridPos() + direction;
+            if (grid.ContainsKey(neighbourCoord))
+            {            
                 QueueNewNeighbours(neighbourCoord);
             }
-            catch
-            {
-                //Do nothing
-            }
+           
         }
     }
 
     private void QueueNewNeighbours(Vector2Int neighbourCoord)
     {
         Waypoint neighbour = grid[neighbourCoord];
-        if (neighbour.isExplored || neighbour.isQueued)
+        if (neighbour.isExplored || queue.Contains(neighbour))
         {
             //Do nothing
         }
         else
         {
-            neighbour.SetTopColor(Color.blue); //move later
             queue.Enqueue(neighbour);
-            neighbour.isQueued = true;
-            print("Queueing " + neighbour);
+            neighbour.exploredFrom = searchCenter;
         }
     }
 

@@ -4,11 +4,13 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [SelectionBase]
+[RequireComponent(typeof(Waypoint))]
+
 public class CubeEditor : MonoBehaviour
 {
 
    
-
+    
     Waypoint waypoint;
 
 
