@@ -9,9 +9,7 @@ public class Pathfinder : MonoBehaviour
     Queue<Waypoint> queue = new Queue<Waypoint>();
     bool isRunning = true;
     Waypoint searchCenter;
-
     List<Waypoint> path = new List<Waypoint>();
-
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -19,16 +17,25 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+   
 
     public List<Waypoint> GetPath()
+    {
+        if (path.Count == 0)
+        {
+            CalculatePath();
+        }
+            return path;
+        
+    }
+
+    private void CalculatePath()
     {
         LoadBlocks();
         ColorStartingAndEnding();
         BreadthFirstSearch();
         CreatePath();
-        return path;
     }
-
 
     private void CreatePath()
     {
