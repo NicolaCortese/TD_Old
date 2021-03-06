@@ -6,14 +6,17 @@ public class EnemySpawner : MonoBehaviour
 {
     float secondsBetweenSpawns = 2f;
     public GameObject enemyUnit;
-    public Vector3 parent;
     public int wave = 10;
     
     void Start()
     {
-        StartCoroutine(SpawnsEnemies());
+        Invoke("DelayedSpawn", 2f);
     }
 
+    void DelayedSpawn()
+    {
+        StartCoroutine(SpawnsEnemies());
+    }
 
     IEnumerator SpawnsEnemies()
     {
@@ -21,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         {
             print("spawning");
             
-            Instantiate(enemyUnit, parent, Quaternion.identity);
+            Instantiate(enemyUnit, transform.position, Quaternion.identity);
 
             yield return new WaitForSeconds(secondsBetweenSpawns);
             

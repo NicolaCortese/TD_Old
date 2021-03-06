@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [Tooltip("FX prefab on Enemies")] [SerializeField] GameObject EnemyDeathFX;
-    [SerializeField] int health = 30; 
+    [SerializeField] int health = 10; 
     [SerializeField] Transform parent;
 
     // Start is called before the first frame update
