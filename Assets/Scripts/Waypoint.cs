@@ -11,6 +11,8 @@ public class Waypoint : MonoBehaviour
     Vector2Int gridPos;
     const int gridSize = 10;
 
+    public bool isPlaceable = true;
+
 
 
     public int GetGridSize()
@@ -26,9 +28,16 @@ public class Waypoint : MonoBehaviour
         );
     }
 
-    public void SetTopColor(Color color)
+    
+    void OnMouseOver()
     {
-        MeshRenderer meshRendererTop = transform.Find("Top").GetComponent<MeshRenderer>();
-        meshRendererTop.material.color = color;
+        if (Input.GetMouseButtonDown(0)&&isPlaceable)
+        {
+            Debug.Log("Mouse has been clicked over the placeable " + gameObject);
+        }
+        if (Input.GetMouseButtonDown(0) && !isPlaceable)
+        {
+            Debug.Log("Error - not placeable over " + gameObject);
+        }
     }
 }
