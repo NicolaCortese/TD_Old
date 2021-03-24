@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6138351405197694210}
   - component: {fileID: 7038852172052670092}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5aedcf0d3730cc4b8f23df46151e426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exploredColor: {r: 0.12259703, g: 0.7674034, b: 0.8962264, a: 0}
   isExplored: 0
   exploredFrom: {fileID: 0}
+  isPlaceable: 1
 --- !u!114 &7038852172052670092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4679620867140489324}
-  m_Text: 1,0
+  m_Text: 4,0
   m_OffsetZ: 0
   m_CharacterSize: 0.05
   m_LineSpacing: 1
@@ -240,11 +240,11 @@ TextMesh:
   m_TabSize: 10
   m_FontSize: 500
   m_FontStyle: 1
-  m_RichText: 1
+  m_RichText: 0
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 0
 --- !u!1001 &7804095995448667348
 PrefabInstance:
   m_ObjectHideFlags: 0
