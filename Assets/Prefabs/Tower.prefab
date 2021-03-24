@@ -4747,7 +4747,8 @@ MonoBehaviour:
   objectToPan: {fileID: 7646608819681799231}
   attackRange: 30
   bulletParticle: {fileID: 2451597452287022706}
-  laser: {fileID: 8300000, guid: de765a65e766ce84cb01335ae960fd30, type: 3}
+  Shooting: {fileID: 8300000, guid: d0baa6938e8cc004695d944ec7c590be, type: 3}
+  baseWaypoint: {fileID: 0}
 --- !u!82 &8964318867379556481
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4758,7 +4759,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dd4289d48396740499bc12d52700ec3e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

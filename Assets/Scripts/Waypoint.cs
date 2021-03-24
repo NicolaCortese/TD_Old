@@ -12,7 +12,7 @@ public class Waypoint : MonoBehaviour
     const int gridSize = 10;
 
     public bool isPlaceable = true;
-    public GameObject towerPrefab;
+    
 
 
     public int GetGridSize()
@@ -33,8 +33,7 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)&&isPlaceable)
         {
-            Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
-            isPlaceable = false;          
+            FindObjectOfType<TowerFactory>().AddTower(this);      
         }
         if (Input.GetMouseButtonDown(0) && !isPlaceable)
         {

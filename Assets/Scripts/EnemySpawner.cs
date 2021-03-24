@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    float secondsBetweenSpawns = 2f;
+    [SerializeField] float secondsBetweenSpawns = 2f;
     public GameObject enemyUnit;
     public int wave = 10;
-    
-    
+    [SerializeField] Transform parent;
+    [SerializeField] AudioClip enemySpawning;
+
     void Start()
     {
         Invoke("DelayedSpawn", 2f);
@@ -23,10 +24,10 @@ public class EnemySpawner : MonoBehaviour
     {
         while (wave > 0)
         {
-            print("spawning");
-            
-            Instantiate(enemyUnit, transform.position, Quaternion.identity);
-            
+
+            GetComponent<AudioSource>().PlayOneShot(enemySpawning);
+            var newEnemy = Instantiate(enemyUnit, transform.position, Quaternion.identity);
+            newEnemy.transform.parent = parent;
             yield return new WaitForSeconds(secondsBetweenSpawns);
             
             wave--;

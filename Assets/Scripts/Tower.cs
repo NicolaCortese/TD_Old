@@ -8,17 +8,17 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 30f;
     [SerializeField] ParticleSystem bulletParticle;
-    public AudioClip laser;
-    AudioSource audioSource;
+    [SerializeField] AudioClip Shooting;
 
     //State
     Transform targetEnemy;
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
 
     }
 
+    public Waypoint baseWaypoint; //What the tower is standing on
 
     // Update is called once per frame
     void Update()
@@ -75,15 +75,11 @@ public class Tower : MonoBehaviour
     }
     void Shoot(bool isActive)
     {
+        //GetComponent<AudioSource>().PlayOneShot(Shooting);
         var emissionModule = bulletParticle.emission;
         emissionModule.enabled = isActive;
-        //StartCoroutine(LaserSound());
-
+        
     }
 
-    //IEnumerator LaserSound()
-    //{
-    //    audioSource.PlayOneShot(laser);
-    //    yield return new WaitForSeconds(1f);
-    //}
+    
 }

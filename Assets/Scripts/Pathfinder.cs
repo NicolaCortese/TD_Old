@@ -32,7 +32,6 @@ public class Pathfinder : MonoBehaviour
     private void CalculatePath()
     {
         LoadBlocks();
-       
         BreadthFirstSearch();
         CreatePath();
     }
