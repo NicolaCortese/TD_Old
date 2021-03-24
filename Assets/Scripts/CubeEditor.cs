@@ -34,11 +34,11 @@ public class CubeEditor : MonoBehaviour
 
     private void LabelsGrid()
     {
-        int gridSize = waypoint.GetGridSize();
-        TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        string labelText = waypoint.GetGridPos().x + "," + waypoint.GetGridPos().y;
-        textMesh.text = labelText;
-
-        gameObject.name = labelText;
+        int gridsize = waypoint.GetGridSize();
+        TextMesh textmesh = GetComponentInChildren<TextMesh>();
+        string labeltext = waypoint.GetGridPos().x + "," + waypoint.GetGridPos().y;
+        textmesh.text = labeltext;
+        gameObject.name = labeltext;
+        
     }
 }
